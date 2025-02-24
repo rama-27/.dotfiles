@@ -113,7 +113,7 @@ export PATH="$PATH:/opt/idea-IU-243.22562.218/bin"
 export PATH="$PATH:/home/rama/.cargo/env"
 
 
-alias vim=nvim
+ alias vim=nvim
 alias tmuxTerminal="tmux new"
 
 

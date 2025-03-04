@@ -213,7 +213,7 @@ bar {
 # ------------------------------------------
 exec --no-startup-id nm-applet
 
-exec --no-startup-id picom
+exec --no-startup-id picom -b --config ~/.config/picom/picom.config
 
 
 bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor
@@ -239,9 +239,9 @@ bindsym $mod+m move workspace to output left
 bindsym $mod+Shift+period exec systemctl suspend
 
 ## Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).png"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).png"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).png"
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
@@ -250,15 +250,19 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 
 bindsym $mod+b exec firefox --new-window
 
+
 bindsym $mod+y exec shutdown now
 
 exec xinput set-prop "SYNA7DB5:01 06CB:CD41 Touchpad" "libinput Tapping Enabled" 1
 exec setxkbmap -option caps:super
 
+exec --no-startup-id redshift
+#-l 17:78
+
 # exec_always feh --bg-scale ~/Downloads/wallpapers/a_man_in_a_robe.jpeg
 
 # exec_always feh --bg-scale ~/Downloads/wallpapers/wallpaper.png
-exec_always feh --bg-scale ~/Downloads/wallpapers/wallpaper2.jpeg
+exec_always feh --bg-scale ~/Downloads/wallpapers/garden2.png
 #navigate workspaces next / previous
 bindsym Shift+Ctrl+bracketleft workspace prev
 bindsym Shift+Ctrl+bracketright workspace next

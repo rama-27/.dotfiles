@@ -139,3 +139,7 @@ export PATH=/opt/rocm/bin:$PATH
 
 # add multy to PATH
 export PATH=$PATH:$HOME/.multy/bin
+
+# add to ~/.zshrc
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

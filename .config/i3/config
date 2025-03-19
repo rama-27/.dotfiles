@@ -213,7 +213,7 @@ bar {
 # ------------------------------------------
 exec --no-startup-id nm-applet
 
-exec --no-startup-id picom -b --config ~/.config/picom/picom.config
+exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
 
 
 bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor
@@ -225,15 +225,23 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #i
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 #
-# # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym $mod+comma exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym $mod+semicolon exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 
+# # Sreen brightness controls
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+# Brightness control
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/scripts/bright.sh up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/scripts/bright.sh down
+# Fallback if your keyboard lacks brightness keys
+bindsym F5 exec --no-startup-id ~/.config/i3/scripts/bright.sh up
+bindsym F6 exec --no-startup-id ~/.config/i3/scripts/bright.sh down
 # Alsa audio controls.
-bindsym $mod+Shift+comma exec ~/.config/i3/scripts/alsa restore
-bindsym $mod+semicolon exec ~/.config/i3/scripts/alsa down Headphone
-bindsym $mod+comma exec ~/.config/i3/scripts/alsa up Headphone
-bindsym $mod+m move workspace to output left
+# bindsym $mod+Shift+comma exec ~/.config/i3/scripts/alsa restore
+# bindsym $mod+semicolon exec ~/.config/i3/scripts/alsa down Headphone
+# bindsym $mod+comma exec ~/.config/i3/scripts/alsa up Headphone
+# bindsym $mod+m move workspace to output left
 
 # Suspend
 bindsym $mod+Shift+period exec systemctl suspend
@@ -250,14 +258,15 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 
 bindsym $mod+b exec firefox --new-window
 
+bindsym $mod+Shift+b exec ~/Downloads/zen/zen
+
 
 bindsym $mod+y exec shutdown now
 
 exec xinput set-prop "SYNA7DB5:01 06CB:CD41 Touchpad" "libinput Tapping Enabled" 1
 exec setxkbmap -option caps:super
 
-exec --no-startup-id redshift
-#-l 17:78
+exec --no-startup-id redshift -l 17:78
 
 # exec_always feh --bg-scale ~/Downloads/wallpapers/a_man_in_a_robe.jpeg
 

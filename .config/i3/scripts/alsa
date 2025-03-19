@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Script to control ALSA audio for headphones
+# Usage: $0 [up|down|restore] [control_name]
+# Default control_name is "Headphone" unless specified
+
+CONTROL=${2:-Headphone}  # Default to "Headphone" if no second argument
+STEP=5                  # Volume step in percentage (adjust as needed)
+
+case "$1" in
+    up)
+        # Increase headphone volume by $STEP%
+        amixer set "$CONTROL" "$STEP"%+ >/dev/null 2>&1
+        # Get and display current volume
+        CURRENT=$(amixer get "$CONTROL" | grep -o '[0-9]*%' | head -n1 | sed 's/%//')
+        echo "Headphone volume increased to $CURRENT%"
+        ;;
+    down)
+        # Decrease headphone volume by $STEP%
+        amixer set "$CONTROL" "$STEP"%- >/dev/null 2>&1
+        # Get and display current volume
+        CURRENT=$(amixer get "$CONTROL" | grep -o '[0-9]*%' | head -n1 | sed 's/%//')
+        echo "Headphone volume decreased to $CURRENT%"
+        ;;
+    restore)
+        # Restore ALSA settings from saved state (using alsactl)
+        if [ -f /etc/asound.state ]; then
+            alsactl restore >/dev/null 2>&1
+            echo "ALSA settings restored from /etc/asound.state"
+        else
+            echo "No ALSA state file found at /etc/asound.state"
+            exit 1
+        fi
+        ;;
+    *)
+        echo "Usage: $0 [up|down|restore] [control_name]"
+        echo "  up: Increase volume by $STEP%"
+        echo "  down: Decrease volume by $STEP%"
+        echo "  restore: Restore ALSA settings from saved state"
+        echo "  control_name: ALSA control (default: Headphone)"
+        exit 1
+        ;;
+esac
+
+exit 0

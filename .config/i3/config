@@ -38,7 +38,7 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec kitty -e tmux
+bindsym $mod+Return exec kitty -e tmux new -As0
 
 # kill focused window
 # bindsym $mod+space exec "/home/theprimeagen/dotfiles/awesome-streamerrc/ThePrimeagen/tmux2"
@@ -216,7 +216,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
 
 
-bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor
+#bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor
 bindsym $mod+Shift+n exec --no-startup-id ~/dotfiles/bin/resolution
 
 # FKeys
@@ -269,8 +269,8 @@ exec --no-startup-id redshift -l 17:78
 
 # exec_always feh --bg-scale ~/Downloads/wallpapers/a_man_in_a_robe.jpeg
 
-# exec_always feh --bg-scale ~/Downloads/wallpapers/wallpaper.png
-exec_always feh --bg-scale ~/Downloads/wallpapers/garden2.png
+ exec feh --bg-scale ~/Downloads/wallpapers/wallpaper.png
+#exec_always feh --bg-scale ~/Downloads/wallpapers/garden2.png
 exec_always setxkbmap -option caps:super
 #navigate workspaces next / previous
 bindsym Shift+Ctrl+bracketleft workspace prev

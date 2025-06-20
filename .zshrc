@@ -167,3 +167,6 @@ export PATH=$PATH:$HOME/.multy/bin
 # add to ~/.zshrc
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# opencode
+export PATH=/home/rama/.opencode/bin:$PATH

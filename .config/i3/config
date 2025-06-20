@@ -18,7 +18,7 @@ font pango:JetBrains Mono NerdFont 12px
 # GET DEM BORDERS OUT OF HEREc:w
 #
 # Thanks Childz
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
                           # class                 border  backgr. text    indicator child_border
 for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
 
@@ -38,12 +38,15 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec env DRI_PRIME=1 alacritty
 #-e tmux new -As0
 
 # kill focused window
 # bindsym $mod+space exec "/home/theprimeagen/dotfiles/awesome-streamerrc/ThePrimeagen/tmux2"
 
+#window{
+#window rule floating_type=normal class="Godot_Editor" title="New Game Project (DEBUG)"
+#}
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
@@ -225,7 +228,7 @@ bar {
 # ------------------------------------------
 exec --no-startup-id nm-applet
 
-exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
+exec --no-startup-id DRI_PRIME=1 picom -b --config ~/.config/picom/picom.conf
 
 
 #bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor
@@ -270,7 +273,7 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 
 bindsym $mod+b exec firefox --new-window
 
-bindsym $mod+Shift+b exec ~/Downloads/zen/zen
+bindsym $mod+Shift+b exec env DRI_PRIME=1 ~/Downloads/zen/zen
 
 
 bindsym $mod+y exec shutdown now
@@ -279,9 +282,9 @@ exec xinput set-prop "SYNA7DB5:01 06CB:CD41 Touchpad" "libinput Tapping Enabled"
 
 exec --no-startup-id redshift -l 17:78
 
-# exec_always feh --bg-scale ~/Downloads/wallpapers/a_man_in_a_robe.jpeg
+ exec_always feh --bg-scale ~/Downloads/wallpapers/a_man_in_a_robe.jpeg
 
- exec_always feh --bg-scale ~/Downloads/wallpapers/wallpaper.png
+# exec_always feh --bg-scale ~/Downloads/wallpapers/wallpaper.png
 #exec_always feh --bg-scale ~/Downloads/wallpapers/garden2.png
 exec_always setxkbmap -option caps:super
 #navigate workspaces next / previous
@@ -291,7 +294,8 @@ bindsym Shift+Ctrl+bracketright workspace next
 bindsym Shift+Ctrl+s exec env XDG_CURRENT_DESKTOP=GNOME gnome-control-center
 
 bindsym $mod+o exec ~/Downloads/Obsidian-1.7.7.AppImage --no-sandbox
-#gaps inner 5
+gaps inner 5
+gaps outer 3
 
 # bindsym $mod+Ctrl+k scroll up
 # bindsym $mod+Ctrl+j scroll down

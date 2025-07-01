@@ -169,6 +169,8 @@ bindsym $mod+semicolon exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@
 bindsym XF86MonBrightnessUp exec --no-startup-id /home/rama/.config/i3/scripts/bright.sh up
 bindsym XF86MonBrightnessDown exec --no-startup-id /home/rama/.config/i3/scripts/bright.sh down
 
+bindsym F5 exec --no-startup-id /home/rama/.config/i3/scripts/bright.sh up
+bindsym F6 exec --no-startup-id /home/rama/.config/i3/scripts/bright.sh down
 # Suspend
 bindsym $mod+Shift+period exec systemctl suspend
 

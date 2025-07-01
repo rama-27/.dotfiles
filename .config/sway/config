@@ -1,0 +1,201 @@
+# ~/.config/sway/config
+
+exec dbus-update-activation-environment --systemd DRI_PRIME=1
+set $mod Mod4
+
+#output * allow_tearing yes
+output * max_render_time off
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:JetBrains Mono NerdFont 12px
+
+# GET DEM BORDERS OUT OF HEREc:w
+# Thanks Childz
+for_window [class="^.*"] border pixel 0
+                          # class                 border  backgr. text    indicator child_border
+for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+exec env DRI_PRIME=1
+set $term kitty
+bindsym $mod+Return exec $term
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start application launcher (rofi should work, but wofi is a native alternative)
+bindsym $mod+d exec rofi -show drun -show-icons -icon-theme "Papirus"
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+z split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+
+# reload the configuration file
+bindsym $mod+Shift+r reload
+# restart sway inplace
+bindsym $mod+Shift+c restart
+# exit sway
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit Sway? This will end your Wayland session.' -B 'Yes, exit Sway' 'swaymsg exit'
+
+# resize window
+bindsym $mod+ctrl+h resize shrink width 10 px or 10 ppt
+bindsym $mod+ctrl+j resize grow height 10 px or 10 ppt
+bindsym $mod+ctrl+k resize shrink height 10 px or 10 ppt
+bindsym $mod+ctrl+l resize grow width 10 px or 10 ppt
+
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# gaps
+gaps inner 3
+gaps outer 3
+
+# ------------------------------------------
+# SWAY-SPECIFIC CONFIGURATIONS
+# ------------------------------------------
+
+# Input configuration (replaces setxkbmap and xinput)
+input * {
+    xkb_options caps:super
+}
+input type:touchpad {
+    tap enabled
+}
+
+# Output configuration (replaces feh/nitrogen)
+# Set your wallpaper here. Use `swaymsg -t get_outputs` to find your output name
+output * bg /home/rama/Downloads/wallpapers/a_man_in_a_robe.jpeg fill
+
+# ------------------------------------------
+# STARTUP APPLICATIONS
+# ------------------------------------------
+
+exec nm-applet
+exec --no-startup-id gammastep -l 17:78 # Replaces redshift
+exec --no-startup-id sway-autotiling # Replaces i3-autolayout
+
+# ------------------------------------------
+# CUSTOM KEYS START
+# ------------------------------------------
+
+# Display configuration script (Needs to be rewritten with swaymsg!)
+# This will NOT work until you update it from xrandr to swaymsg.
+bindsym $mod+Shift+n exec --no-startup-id ~/dotfiles/bin/resolution
+
+# Pulse Audio controls (These work as-is)
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+comma exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+semicolon exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# Brightness controls (These should work if the script is simple)
+bindsym XF86MonBrightnessUp exec --no-startup-id /home/rama/.config/i3/scripts/bright.sh up
+bindsym XF86MonBrightnessDown exec --no-startup-id /home/rama/.config/i3/scripts/bright.sh down
+
+# Suspend
+bindsym $mod+Shift+period exec systemctl suspend
+
+## Screenshots (replaces maim/xdotool/xclip)
+# You need to install: grim, slurp, wl-clipboard, jq
+# Screenshot to file (full screen)
+bindsym Print exec grim "/home/$USER/Pictures/Screenshot-$(date +'%Y%m%d-%H%M%S').png"
+# Screenshot to file (selected area)
+bindsym Shift+Print exec grim -g "$(slurp)" "/home/$USER/Pictures/Screenshot-$(date +'%Y%m%d-%H%M%S').png"
+# Screenshot to clipboard (full screen)
+bindsym Ctrl+Print exec grim - | wl-copy
+# Screenshot to clipboard (selected area)
+bindsym Ctrl+Shift+Print exec grim -g "$(slurp)" | wl-copy
+
+bindsym $mod+b exec firefox --new-window
+bindsym $mod+Shift+b exec env DRI_PRIME=1 ~/Downloads/zen/zen
+bindsym $mod+y exec shutdown now
+bindsym Shift+Ctrl+s exec env XDG_CURRENT_DESKTOP=GNOME gnome-control-center
+bindsym $mod+o exec ~/Downloads/Obsidian-1.7.7.AppImage --no-sandbox
+
+# navigate workspaces next / previous
+bindsym Shift+Ctrl+bracketleft workspace prev
+bindsym Shift+Ctrl+bracketright workspace next
+
+# Start swaybar to display a workspace bar
+bar {
+    status_command i3status
+    # IMPORTANT: Replace eDP-1 with your output name from `swaymsg -t get_outputs`
+    tray_output eDP-1
+}

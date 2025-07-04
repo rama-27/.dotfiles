@@ -1,0 +1,116 @@
+# ~/.config/picom/picom.conf
+# A minimal picom configuration for i3wm.
+# This version disables all animations (shadows, fading, transparency, blur)
+# but keeps rounded corners.
+#
+# To learn more about the options, run: man picom
+
+#################################
+#
+# Backend
+#
+#################################
+
+# Backend to use: "xrender", "glx".
+# GLX backend is typically recommended for modern GPUs.
+backend = "glx";
+
+# Enable vsync to prevent screen tearing.
+vsync = true;
+
+#################################
+#
+# Shadows
+#
+#################################
+
+# Disabled client-side shadows on windows.
+shadow = false;
+
+# All other shadow options are irrelevant when shadow = false.
+
+#################################
+#
+# Fading
+#
+#################################
+
+# Disabled fading windows during opacity changes.
+fading = false;
+
+# All other fading options are irrelevant when fading = false.
+
+#################################
+#
+# Opacity / Transparency
+#
+#################################
+
+# Opacity of inactive windows. (1.0 = fully opaque)
+inactive-opacity = 1.0;
+
+# Opacity of active windows. (1.0 = fully opaque)
+active-opacity = 1.0;
+
+# Opacity of window titlebars and borders.
+frame-opacity = 1.0;
+
+# Do not let inactive-opacity override window manager settings.
+inactive-opacity-override = false;
+
+# All opacity-rule entries have been removed to disable custom transparency.
+opacity-rule = [ ];
+
+#################################
+#
+# Blur
+#
+#################################
+
+# The blur section has been removed entirely to disable background blur.
+
+#################################
+#
+# Corners
+#
+#################################
+
+# Rounded corners on windows.
+corner-radius = 8.0;
+
+# A list of conditions of windows that should have no rounded corners.
+# This is useful for fullscreen apps and docks.
+rounded-corners-exclude = [
+  "window_type = 'dock'",
+  "window_type = 'desktop'",
+  # Disable rounding for maximized and fullscreen windows
+  "class_g = 'i3-frame'",
+  "window_state = 'maximized'",
+  "window_state = 'fullscreen'"
+];
+
+
+#################################
+#
+# General Settings
+#
+#################################
+
+# Mark WM-provided window decorations (such as title-bars) as focused.
+mark-wmwin-focused = true;
+
+# Mark override-redirect windows (e.g., menus, popups) as focused.
+mark-ovredir-focused = true;
+
+# Use EWMH _NET_WM_ACTIVE_WINDOW to determine currently focused window.
+use-ewmh-active-win = true;
+
+# Unredirect all windows if a full-screen opaque window is detected.
+# This is essential for performance in fullscreen games and videos.
+unredir-if-possible = true;
+
+# Focus-related settings for i3wm compatibility.
+focus-exclude = [ "class_g = 'Cairo-clock'" ];
+
+# The wintypes section is removed as its rules for shadows and opacity
+# are no longer needed.

@@ -7,7 +7,7 @@ set $mod Mod4
 output * max_render_time off
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:JetBrains Mono NerdFont 12px
+font pango:JetBrains Mono NerdFont 10px
 
 # GET DEM BORDERS OUT OF HEREc:w
 # Thanks Childz
@@ -183,7 +183,7 @@ bindsym Shift+Print exec grim -g "$(slurp)" "/home/$USER/Pictures/Screenshot-$(d
 # Screenshot to clipboard (full screen)
 bindsym Ctrl+Print exec grim - | wl-copy
 # Screenshot to clipboard (selected area)
-bindsym Ctrl+Shift+Print exec grim -g "$(slurp)" | wl-copy
+bindsym Ctrl+Shift+Print exec grim -g "$(slurp)" - | wl-copy
 
 bindsym $mod+b exec firefox --new-window
 bindsym $mod+Shift+b exec env DRI_PRIME=1 ~/Downloads/zen/zen
@@ -198,6 +198,8 @@ bindsym Shift+Ctrl+bracketright workspace next
 # Start swaybar to display a workspace bar
 bar {
     status_command i3status
+
+    #swaybar_command waybar
     # IMPORTANT: Replace eDP-1 with your output name from `swaymsg -t get_outputs`
     tray_output eDP-1
 }

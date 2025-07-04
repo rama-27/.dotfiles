@@ -219,7 +219,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
-        tray_output primary
+#        tray_output primary
 
 }
 
@@ -228,7 +228,7 @@ bar {
 # ------------------------------------------
 exec --no-startup-id nm-applet
 
-exec --no-startup-id DRI_PRIME=1 picom -b --config ~/.config/picom/picom.conf
+exec --no-startup-id  picom -b --config ~/.config/picom/picom.conf
 
 
 #bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor

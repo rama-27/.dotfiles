@@ -218,6 +218,8 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+
+    #swaybar_command waybar
         status_command i3status
 #        tray_output primary
 
@@ -284,6 +286,7 @@ exec --no-startup-id redshift -l 17:78
 
  exec_always feh --bg-scale ~/Downloads/wallpapers/a_man_in_a_robe.jpeg
 
+ exec_always feh --bg-scale ~/Downloads/wallpapers/b-003.jpg
 # exec_always feh --bg-scale ~/Downloads/wallpapers/wallpaper.png
 #exec_always feh --bg-scale ~/Downloads/wallpapers/garden2.png
 #exec_always feh --bg-scale ~/Downloads/wallpapers/mansion.jpg

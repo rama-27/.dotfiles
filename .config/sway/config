@@ -1,15 +1,7 @@
 # ~/.config/sway/config
 
-exec dbus-update-activation-environment --systemd DRI_PRIME=1
 set $mod Mod4
 
-# Screen sharing setup
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
-# Start required services
-exec --no-startup-id /usr/libexec/xdg-desktop-portal-wlr
-exec --no-startup-id systemctl --user start pipewire pipewire-pulse wireplumber
 
 
 #output * allow_tearing yes
@@ -143,6 +135,9 @@ gaps outer 3
 input * {
     xkb_options caps:super
 }
+input type:keyboard {
+        xkb_options "caps:super"
+    }
 input type:touchpad {
     tap enabled
 }

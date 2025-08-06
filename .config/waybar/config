@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
     "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "network", "backlight","temperature","cpu", "memory", "sway/language", "battery", "battery#bat2", "clock", "tray"],
+    "modules-right": ["pulseaudio", "network", "backlight","temperature","cpu", "memory","custom/storage", "sway/language", "battery", "battery#bat2", "clock", "tray"],
    // "modules-right": ["cpu", "memory", "temperature", "pulseaudio", "network", "backlight", "sway/language", "battery", "battery#bat2", "clock", "tray"]
     // Modules configuration
     // "sway/workspaces": {
@@ -146,5 +146,12 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
+    },
+    "custom/storage": {
+    "format": "{} 🖴",
+    "interval": 60, // Update every 60 seconds
+    "exec": "$HOME/.config/waybar/scripts/storage.sh",
+    "return-type": "json",
+    "tooltip": true
+}
 }

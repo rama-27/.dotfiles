@@ -225,3 +225,7 @@ label:focus {
     margin: 6px 3px;
     min-width: 16px;
 }
+#custom-storage {
+    padding: 0 10px;
+    color: #ffffff; /* Adjust color to match your theme */
+}

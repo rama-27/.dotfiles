@@ -1,0 +1,192 @@
+# ~/.config/picom/picom.conf
+# This is a sample picom configuration file for i3wm with an AMD GPU.
+#
+# To learn more about the options, run: man picom
+
+#################################
+#
+# Backend
+#
+#################################
+
+# Backend to use: "xrender", "glx".
+# GLX backend is typically recommended for modern GPUs (AMD, NVIDIA, Intel).
+# It provides better performance and more features like blur.
+backend = "glx";
+
+# Enable vsync to prevent screen tearing.
+# You might have to switch this to "false" if you experience stuttering with some drivers.
+vsync = true;
+
+#################################
+#
+# Shadows
+#
+#################################
+
+# Enabled client-side shadows on windows.
+shadow = false;
+
+# The blur radius for shadows. (default 12)
+shadow-radius = 7;
+
+# The left offset for shadows. (default -15)
+shadow-offset-x = -7;
+
+# The top offset for shadows. (default -15)
+shadow-offset-y = -7;
+
+# The translucency for shadows. (default .75)
+shadow-opacity = 0.75;
+
+# Set if you want different colour shadows
+# shadow-red = 0.0;
+# shadow-green = 0.0;
+# shadow-blue = 0.0;
+
+# A list of conditions of windows that should have no shadow.
+# This is crucial for i3wm to prevent shadows on the i3bar or docks.
+shadow-exclude = [
+  "name = 'Notification'",
+  "class_g = 'Conky'",
+  "class_g = 'i3-frame'",
+  "class_g ?= 'Notify-osd'",
+  "class_g = 'Cairo-clock'",
+  "_GTK_FRAME_EXTENTS@:c",
+  # Exclude i3bar and other docks/panels
+  "window_type = 'dock'",
+  "window_type = 'desktop'"
+];
+
+#################################
+#
+# Fading
+#
+#################################
+
+# Fade windows during opacity changes.
+fading = false;
+
+# The time between steps in a fade in milliseconds. (default 10)
+fade-delta = 0;
+
+# Opacity change between steps while fading in. (default 0.028)
+fade-in-step = 0.00;
+
+# Opacity change between steps while fading out. (default 0.03)
+fade-out-step = 0.00;
+
+# Do not fade on window open/close.
+# We want this to be "false" to enable the animation.
+no-fading-openclose = true;
+
+#################################
+#
+# Opacity / Transparency
+#
+#################################
+
+# Opacity of inactive windows. (0.0 - 1.0, default 1.0)
+inactive-opacity = 0.9;
+
+# Opacity of active windows. (0.0 - 1.0, default 1.0)
+active-opacity = 1.0;
+
+# Opacity of window titlebars and borders. (0.0 - 1.0, default 1.0)
+frame-opacity = 1.0;
+
+# Let inactive opacity set by -i override the '_NET_WM_OPACITY' values of windows.
+inactive-opacity-override = false;
+
+# Opacity rules.
+# Use `xprop | grep WM_CLASS` to find the class name of a window.
+# Example: 100:class_g = 'vlc'
+opacity-rule = [
+  "100:class_g = 'Lutris'",
+  "100:class_g = 'steam'",
+  "100:class_g = 'Steam'",
+  "100:class_g = 'vlc'",
+  "100:class_g = 'mpv'",
+  "100:class_g = 'GIMP'",
+  "100:class_g = 'Firefox'",
+  "100:class_g = 'Chromium'",
+  "100:class_g = 'Zathura'",
+  "100:name *?= 'Picture-in-picture'",
+  # Make terminals slightly transparent
+  # "95:class_g = 'Alacritty'",
+  # "95:class_g = 'kitty'"
+];
+
+#################################
+#
+# Blur
+#
+#################################
+
+# Background blur. This is a resource-intensive feature.
+# If you experience lag, disable this section first.
+blur: {
+  method = "dual_kawase"; # "none", "kernel", "gaussian", "box", "dual_kawase"
+  strength = 6;
+  # Exclude windows that don't need blur
+  # This is important for performance and to avoid visual glitches.
+  background-exclude = [
+    "window_type = 'dock'",
+    "window_type = 'desktop'",
+    "class_g = 'i3-frame'",
+    "_GTK_FRAME_EXTENTS@:c"
+  ];
+}
+
+#################################
+#
+# Corners
+#
+#################################
+
+# Rounded corners.
+corner-radius = 8.0;
+
+# A list of conditions of windows that should have no rounded corners.
+rounded-corners-exclude = [
+  "window_type = 'dock'",
+  "window_type = 'desktop'",
+  # Disable rounding for maximized and fullscreen windows
+  "class_g = 'i3-frame'",
+  "window_state = 'maximized'",
+  "window_state = 'fullscreen'"
+];
+
+
+#################################
+#
+# General Settings
+#
+#################################
+
+# Mark WM-provided window decorations (such as title-bars) as focused.
+mark-wmwin-focused = true;
+
+# Mark override-redirect windows (e.g., menus, popups) as focused.
+mark-ovredir-focused = true;
+
+# Use EWMH _NET_WM_ACTIVE_WINDOW to determine currently focused window.
+use-ewmh-active-win = true;
+
+# Unredirect all windows if a full-screen opaque window is detected.
+# This is essential for performance in fullscreen games and videos.
+unredir-if-possible = true;
+
+# Focus-related settings for i3wm compatibility.
+focus-exclude = [ "class_g = 'Cairo-clock'" ];
+
+# Window type settings. `wintypes` allows you to customize behavior for
+# specific window types.
+wintypes:
+{
+  tooltip = { fade = true; shadow = true; opacity = 0.85; focus = true; full-shadow = false; };
+  dock = { shadow = false; clip-shadow-above = true; }
+  dnd = { shadow = false; }
+  popup_menu = { opacity = 0.9; }
+  dropdown_menu = { opacity = 0.9; }
+};

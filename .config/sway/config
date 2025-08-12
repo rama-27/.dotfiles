@@ -189,6 +189,8 @@ bindsym Ctrl+Print exec grim - | wl-copy
 # Screenshot to clipboard (selected area)
 bindsym Ctrl+Shift+Print exec grim -g "$(slurp)" - | wl-copy
 
+bindsym $mod+Ctrl+b exec ~/.config/sway/togglebar.sh
+
 bindsym $mod+b exec firefox --new-window
 bindsym $mod+Shift+b exec env DRI_PRIME=1 ~/Downloads/zen/zen
 bindsym $mod+y exec shutdown now
@@ -203,7 +205,7 @@ bindsym Shift+Ctrl+bracketright workspace next
 bar {
 #    status_command i3status
 
-    swaybar_command waybar
+#swaybar_command waybar
     # IMPORTANT: Replace eDP-1 with your output name from `swaymsg -t get_outputs`
-    tray_output eDP-1
+    #tray_output eDP-1
 }

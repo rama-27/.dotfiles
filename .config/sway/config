@@ -124,8 +124,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # gaps
-gaps inner 3
-gaps outer 3
+#gaps inner 2
+#gaps outer 1
 
 # ------------------------------------------
 # SWAY-SPECIFIC CONFIGURATIONS
@@ -144,7 +144,9 @@ input type:touchpad {
 
 # Output configuration (replaces feh/nitrogen)
 # Set your wallpaper here. Use `swaymsg -t get_outputs` to find your output name
-output * bg /home/rama/Downloads/wallpapers/a_man_in_a_robe.jpeg fill
+#output * bg /home/rama/Downloads/wallpapers/a_man_in_a_robe.jpeg fill
+output * bg /home/rama/Downloads/wallpapers/wallpaper.png fill
+
 
 # ------------------------------------------
 # STARTUP APPLICATIONS
@@ -203,9 +205,9 @@ bindsym Shift+Ctrl+bracketright workspace next
 
 # Start swaybar to display a workspace bar
 bar {
-#    status_command i3status
+    #status_command i3status
 
-#swaybar_command waybar
+swaybar_command waybar
     # IMPORTANT: Replace eDP-1 with your output name from `swaymsg -t get_outputs`
     #tray_output eDP-1
 }
